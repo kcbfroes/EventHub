@@ -12,6 +12,9 @@ tasks:
     command: |
       echo "REACT_APP_API_URL=$(gp url 3001)" > .env 
       npm start
+
+  - name: create tables in db
+    command: './init-db.sh'
   
 ports:
     - name: front-end
@@ -22,3 +25,7 @@ ports:
       port: 3001
       onOpen: ignore
       visibility: public
+
+    - name: database
+      port: 5432
+      onOpen: ignore
