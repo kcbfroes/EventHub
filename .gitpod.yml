@@ -1,30 +1,10 @@
 image: gitpod/workspace-postgres
 
 tasks:
- 
-  
-  - name: run front-end
-    openMode: split-right
+  - name: run back-end
+    openMode: split-left
     init: |
-      cd client
+      npm install pg dotenv 
       npm install
     command: |
-      echo "REACT_APP_API_URL=$(gp url 3001)" > .env 
       npm start
-
-  - name: create tables in db
-    command: './init-db.sh'
-  
-ports:
-    - name: front-end
-      port: 3000
-      onOpen: open-preview
-
-    - name: back-end
-      port: 3001
-      onOpen: ignore
-      visibility: public
-
-    - name: database
-      port: 5432
-      onOpen: ignore
